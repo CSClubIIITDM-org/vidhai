@@ -1,0 +1,19 @@
+{
+    "name": "vidhai",
+    "version": "1.0.0",
+    "license": "ISC",
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "autoprefixer": "^10.0.0",
+        "bootstrap": "^4.5.3",
+        "cookieconsent": "^3.1.1",
+        "jquery": "^3.5.1",
+        "popper.js": "^1.16.1",
+        "postcss": "^8.0.4",
+        "postcss-cli": "^8.0.0",
+        "postcss-uncss": "^0.17.0",
+        "uncss": "^0.17.3",
+        "what-input": "^5.2.10"
+    },
+    "dependencies": {}
+}

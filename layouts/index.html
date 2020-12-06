@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+{{/* Load page sections. */}}
+{{ range $i, $section := where .Params.sections ".active" "!=" false }}
+	{{ $sectionPath := printf "sections/%s.html" $section.name }}
+	{{ if gt $i 0 }}<hr>{{ end }}
+		<section class="{{anchorize ($section.title|default $section.name)}}-section">
+			{{ if eq $section.name "content" }}
+				{{ $.Content }}
+			{{ else }}
+				{{ $ctx := dict "section" $section "root" $ }}
+				{{ partial $sectionPath $ctx }}
+			{{ end }}
+		</section>
+	{{ end }}
+{{ end }}

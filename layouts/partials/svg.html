@@ -1,0 +1,50 @@
+{{ $svg := "" }}
+{{ $title := "" }}
+{{ if reflect.IsMap . }}
+    {{ $svg = .icon }}
+    {{ $title = .title }}
+{{ else }}
+    {{ $svg = . }}
+{{ end }}
+
+{{ $returnVal := "" }}
+{{ $icon := resources.Get (printf "images/%s.svg" $svg) }}
+{{ if ne $icon nil }}
+    {{ $matches := findRE "fa(s|b|r) fa-.*" $svg }}
+    {{ if gt (len $matches) 0 }}
+        {{ $svg = substr $svg (len "fas fa-") }}
+    {{ end }}
+
+    {{ $class := print $svg "-icon" }}
+    {{ $pattern := "<svg (.*)?>(.*)(<title>.*</title>)?(.*)</svg>" }}
+
+    {{ $replaceWith := "" }}
+    {{ with $title }}
+        {{ $replaceWith = printf `<svg class="%s" ${1}>${2}<title>%s</title>${4}</svg>` $class . }}
+    {{ else }}
+        {{ $replaceWith = printf `<svg class="%s" ${1}>${2}${3}${4}</svg>` $class }}
+    {{ end }}
+
+    {{ $returnVal = $icon.Content | replaceRE $pattern $replaceWith }}
+{{ else }}
+    {{ $family := index (findRE "(fas|fab|far)" $svg) 0 }}
+    {{ $family = cond (eq $family "fas") "solid" (cond (eq $family "far") "regular" "brands") }}
+    {{ $icon := substr $svg (len "fas fa-") }}
+
+    {{ $class := print $icon "-icon" }}
+    {{ $pattern := "<svg (.*)?>(.*)(<title>.*</title>)?(.*)</svg>" }}
+
+    {{ $replaceWith := "" }}
+    {{ with $title }}
+        {{ $replaceWith = printf `<svg class="%s" ${1}>${2}<title>%s</title>${4}</svg>` $class . }}
+    {{ else }}
+        {{ $replaceWith = printf `<svg class="%s" ${1}>${2}${3}${4}</svg>` $class }}
+    {{ end }}
+
+    {{ $path := printf "/node_modules/@fortawesome/fontawesome-free/svgs/%s/%s.svg" $family $icon }}
+    {{ $returnVal = readFile $path | replaceRE "\n<!--[\\s\\S]*-->\n" "" }}
+    {{ $returnVal = $returnVal | replaceRE $pattern $replaceWith }}
+{{ end }}
+
+{{ $returnVal = $returnVal | safeHTML }}
+{{ return $returnVal }}

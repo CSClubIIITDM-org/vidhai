@@ -1,0 +1,15 @@
+name: Material
+isDark: false
+
+colors:
+  base: '#1c1c1c'
+  light: '#282828'
+  dark: '#161616'
+  accent: '#08c'
+  font: '#cccccc'
+
+fonts:
+  googleFonts: Nunito:300,400,700|Anton
+  heading: Montserrat
+  body: Roboto
+  mono: Inconsolata

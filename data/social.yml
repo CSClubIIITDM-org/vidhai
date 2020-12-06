@@ -1,0 +1,24 @@
+- id: address
+  link: '' # link to google map
+  icon: fas fa-map-marker-alt
+- id: email
+  link: mailto:%s
+  icon: fas fa-envelope
+- id: github
+  link: https://github.com/%s
+  icon: fab fa-github
+- id: instagram
+  link: https://www.instagram.com/%s
+  icon: fab fa-instagram
+- id: linkedin
+  link: https://www.linkedin.com/in/%s
+  icon: fab fa-linkedin-in
+- id: twitter
+  link: https://twitter.com/@%s
+  icon: fab fa-twitter
+- id: phone
+  link: tel:%s
+  icon: fas fa-phone
+- id: website
+  link: '%s'
+  icon: fas fa-globe

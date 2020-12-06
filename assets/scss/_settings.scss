@@ -1,0 +1,12 @@
+{{ $scr := .Scratch }}
+{{ $fonts := $scr.Get "fonts" }}
+
+$primary-is-dark: {{ $scr.Get "themeIsDark" }};
+{{ with $scr.Get "colors" }}
+$primary-base: {{ .base }};
+$primary-light: {{ .light }};
+$primary-dark: {{ .dark }};
+$primary-accent: {{ .accent }};
+$primary-base-font-color: {{ .font }};
+{{ end }}
+$border-color: if($primary-is-dark, lighten($primary-light, 10%), darken($primary-light, 10%));

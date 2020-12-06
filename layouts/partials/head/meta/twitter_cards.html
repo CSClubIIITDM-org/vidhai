@@ -1,0 +1,5 @@
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:image" content="{{(resources.GetMatch `images/logo.*`).Permalink}}"/>
+<meta name="twitter:title" content="{{site.Title}}"/>
+<meta name="twitter:description" content="{{site.Params.description}}"/>
+{{ with site.Social.twitter -}}<meta name="twitter:site" content="@{{ . }}"/>{{ end -}}

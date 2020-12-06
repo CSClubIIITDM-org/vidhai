@@ -1,0 +1,44 @@
+{{ $title := .title | default "Contact Us" }}
+<section id="{{$title|anchorize}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="text section-title text-uppercase">{{ $title }}</h2>
+                {{ with .subtitle }}<p>{{ . }}</p>{{ end }}
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 mb-5">
+                <form action="#" method="post">
+                    <div class="form-group row">
+                        <ul>
+                            {{/*  TODO: Add map  */}}
+                            {{ range $k, $v := site.Social }}
+                                {{ $kind := index (where site.Data.social "id" $k) 0 }}
+
+                                {{ $link := $v }}
+                                {{ $target := "" }}
+
+                                {{/*  TODO: Handle this properly  */}}
+                                {{ if ne $k "address" }}
+                                    {{ $link = printf $kind.link $v }}
+                                    {{ $scheme := (urls.Parse $link).Scheme }}
+                                    {{ if not $scheme }}
+                                        {{ $link = $link | relURL }}
+                                    {{ else if in (slice "http" "https") $scheme }}
+                                        {{ $target = `target="_blank" rel="noopener"` }}
+                                    {{ end }}
+                                {{ end }}
+                                <li><a href="{{$link|safeURL}}" {{$target|safeHTMLAttr}}>
+                                    {{ partial "svg" $kind.icon }}
+                                    {{ $v }}
+                                </a></li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

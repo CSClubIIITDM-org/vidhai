@@ -1,0 +1,6 @@
+{{- $scr := .Scratch -}}
+
+{{ $theme := site.Data.theme }}
+{{ $scr.Set "themeIsDark" $theme.isDark }}
+{{ $scr.Set "colors" $theme.colors }}
+{{ $scr.Set "fonts" $theme.fonts }}

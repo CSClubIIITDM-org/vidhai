@@ -1,0 +1,22 @@
+{{ $scr := $.Scratch }}
+
+{{/*---------- Params ----------*/}}
+{{ $scr.Set "search" site.Params.search }}
+{{ $scr.Set "math" (or site.Params.math .Params.math) }}
+{{ $scr.Set "diagram" (or site.Params.diagram .Params.diagram) }}
+{{ $scr.Set "comments" (in site.Params.staticman.commentable .Type | and (ne .Params.comments false) | or .Params.comments) }}
+{{ $scr.Set "commentsCount" (site.Params.staticman.count | default true) }}
+{{ $scr.Set "cookieConsent" (not site.Config.Privacy.GoogleAnalytics.UseSessionStorage) }}
+{{ $scr.Set "themeToggle" (site.Params.themeToggle | default true) }}
+{{ $scr.Set "dateFormat" (site.Params.dateFormat | default "Jan 2, 2006") }}
+{{ $scr.Set "timeFormat" (site.Params.timeFormat | default "3:04 PM") }}
+{{ $scr.Set "abstractLength" (site.Params.abstractLength | default 135) }}
+{{ $scr.Set "linkAuthors" (site.Params.linkAuthors | default true) }}
+{{ $scr.Set "readingTime" (or site.Params.readingTime .Params.readingTime | default true) }}
+{{ $scr.Set "share" (or site.Params.sharing .Params.share) }}
+
+{{/* Display section pager based on section page frontmatter */}}
+{{ $scr.Set "sectionPager" false }}
+{{ if .IsPage }}
+{{ $scr.Set "sectionPager" .CurrentSection.Params.sectionPager }}
+{{ end }}
