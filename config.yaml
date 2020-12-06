@@ -1,7 +1,7 @@
 title: Vidhai
-# baseurl: https://webopsiiitdm.github.io/vidhai
-# googleAnalytics: UA-112332904-4
-enableEmoji: true
+baseurl: https://webopsiiitdmk.github.io/vidhai
+# googleAnalytics:
+# enableEmoji: true
 
 params:
   description:
@@ -17,18 +17,18 @@ social:
 
 # Menu items are to be defined here:
 # Example:
-# home:
-#   - name: About
-#     weight: 2     (optional, defaults to slice order)
-#     url: about    (optional, defaults to the name)
-home:
-  - name: About
-  - name: Programmes
-  - name: Structure
-  - name: Activities
-  - name: Join Us
-  - name: Contribute
-  - name: Contact
+# - name: About
+#   weight: 2     (optional, defaults to slice order)
+#   url: about    (optional, defaults to the name)
+menus:
+  home:
+    - name: About
+    - name: Programmes
+    - name: Structure
+    - name: Activities
+    - name: Join Us
+    - name: Contribute
+    - name: Contact
 
 
 # Don't modify the following configurations!
