@@ -1,17 +1,30 @@
 {{ $page := . }}
-{{ $scr := .Scratch }}
 
-<nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light justify-content-between">
-	<a class="navbar-brand" href="#">
-		<img src="{{(resources.GetMatch `images/logo.*`).RelPermalink}}" height="80" class="d-inline-block align-top">
+<nav id="navbar" class="navbar navbar-light bg-light justify-content-between sticky-top navbar-expand-lg">
+	<a class="navbar-brand" href="{{site.BaseURL|relURL}}" role="button" aria-label="Home">
+		<img src="{{(resources.GetMatch `images/logo.*`).RelPermalink}}" class="d-inline-block align-top" alt="{{site.Title}}">
 	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav ml-auto">
-			{{ range site.Menus.home }}
-				<li class="nav-item"><a href="#{{.URL|default .Name|urlize}}" class="nav-link">{{.Name}}</a></li>
+		<ul class="navbar-nav ml-auto nav nav-pills">
+			{{ range site.Params.sections }}
+				{{ if eq . "contact" }}
+					<li class="nav-item">
+						<a href="#contact-us" class="nav-link">Contact</a>
+					</li>
+				{{ else }}
+					{{ $url := printf "#%s" (anchorize .) }}
+					{{ with site.GetPage (anchorize .) }}
+						{{ with .Title }}
+							<li class="nav-item">
+								<a href="{{$url}}" class="nav-link">{{.}}</a>
+							</li>
+						{{ end }}
+					{{ end }}
+				{{ end }}
 			{{ end }}
 		</ul>
 	</div>

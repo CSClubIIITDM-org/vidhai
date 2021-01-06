@@ -1,13 +1,24 @@
 title: Vidhai
 baseurl: https://webopsiiitdmk.github.io/vidhai
-# googleAnalytics:
-# enableEmoji: true
+copyright: '&copy; 2020 Vidhai. All rights reserved.'
 
 params:
-  description:
-  copyright:
-    owner: Vidhai
-    startYear: 2020
+  description: A non-profit organization.
+
+  sections:
+    - carousel
+    - intro
+    - story
+    - programmes
+    - structure
+    - activities
+    - join us
+    - support
+    - contact
+
+  fonts:
+    heading: Anton
+    body: Nunito
 
 social:
   address: Indian Institute of Information Technology, Design and Manufacturing, Kancheepuram, Tamil Nadu - 600127
@@ -15,50 +26,7 @@ social:
   instagram: vidhai_iiitdm
   phone: '9444695092'
 
-# Menu items are to be defined here:
-# Example:
-# - name: About
-#   weight: 2     (optional, defaults to slice order)
-#   url: about    (optional, defaults to the name)
-menus:
-  home:
-    - name: About
-    - name: Programmes
-    - name: Structure
-    - name: Activities
-    - name: Join Us
-    - name: Contribute
-    - name: Contact
-
-
-# Don't modify the following configurations!
-outputs:
-  home:
-    - HTML
-    - WebAppManifest
-
 disableKinds:
+  - section
   - taxonomy
   - term
-
-mediaTypes:
-  application/manifest+json:
-    suffixes:
-      - webmanifest
-
-outputFormats:
-  WebAppManifest:
-    mediaType: application/manifest+json
-    rel: manifest
-
-imaging:
-  resampleFilter: lanczos
-  quality: 90
-  anchor: smart
-
-privacy:
-  googleAnalytics:
-    anonymizeIP: true
-    disable: false
-    respectDoNotTrack: true
-    useSessionStorage: false

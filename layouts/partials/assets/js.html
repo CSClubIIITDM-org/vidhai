@@ -1,0 +1,18 @@
+{{ $mustOptimize := eq hugo.Environment "production" }}
+
+{{/* Built using `grunt custom:-ajax,-core/ready,-exports/amd,-wrap` */}}
+{{ $jquery := resources.Get "js/vendor/jquery.custom.min.js" }}
+{{ if $jquery }}
+	{{ with ($jquery | fingerprint) }}
+		<script src="{{.RelPermalink}}" integrity="{{.Data.Integrity}}" crossorigin="anonymous"></script>
+	{{ end }}
+{{ end }}
+
+{{ $siteJS := resources.Get "js/site.js" | js.Build (dict "minify" $mustOptimize) }}
+{{ if $mustOptimize }}
+	{{ with ($siteJS | minify | fingerprint) }}
+		<script src="{{.RelPermalink}}" integrity="{{.Data.Integrity}}" crossorigin="anonymous"></script>
+	{{ end }}
+{{ else }}
+	<script src="{{$siteJS.RelPermalink}}"></script>
+{{ end }}

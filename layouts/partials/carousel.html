@@ -1,0 +1,29 @@
+{{ $ctx := .ctx }}
+{{ $id := .id }}
+<div id="{{$id}}" class="carousel slide" data-ride="{{$id}}">
+	<ol class="carousel-indicators">
+		{{ range $i, $v := seq (len $ctx.Params.images) }}
+			{{ $active := cond (eq $i 0) " class=`active`" "" }}
+			<li data-target="#{{$id}}" data-slide-to="{{$i}}"{{$active|safeHTMLAttr}}></li>
+		{{ end }}
+	</ol>
+	<div class="carousel-inner">
+		{{ range $i, $v := $ctx.Params.images }}
+			{{ $image := $ctx.Resources.GetMatch .path }}
+			{{ $image = $image.Resize "1000x" }}
+			{{ $active := cond (eq $i 0) " active" ""}}
+			<div class="carousel-item{{$active}}" data-interval="5000">
+				<img class="d-block w-100" src="{{$image.RelPermalink}}" alt="{{.caption}}">
+				<div class="carousel-caption d-none d-md-block">
+					<p>{{ .caption }}</p>
+				</div>
+			</div>
+		{{ end }}
+	</div>
+	<a class="carousel-control-prev" href="#{{$id}}" role="button" data-slide="prev" aria-label="Previous">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	</a>
+	<a class="carousel-control-next" href="#{{$id}}" role="button" data-slide="next" aria-label="Next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+	</a>
+</div>

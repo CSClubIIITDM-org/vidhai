@@ -1,9 +1,0 @@
-{{/* Copy all fonts from KaTeX's npm module */}}
-{{ $dir := . }}
-{{ $fonts := slice }}
-{{ range (readDir $dir) }}
-    {{ $source := print $dir "/" .Name }}
-    {{ $dest := print "fonts/" .Name }}
-    {{ $font := readFile $source | resources.FromString $dest }}
-    {{ $fonts = $fonts | append $font.RelPermalink }}
-{{ end }}

@@ -1,0 +1,7 @@
+{{ with site.GetPage "join-us" }}
+    {{ $title := .Title | default "Join Us" }}
+    <section id="{{$title|anchorize}}">
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+    </section>
+{{ end }}

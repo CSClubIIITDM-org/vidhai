@@ -1,16 +1,12 @@
 <meta property="og:title" content="{{site.Title}}" />
-<meta property="og:description" content="{{site.Params.Description}}" />
-<meta property="og:type" content="website" />
+<meta property="og:description" content="{{site.Params.description}}"/>
 <meta property="og:url" content="{{.Permalink}}" />
-{{ with resources.GetMatch "images/logo.*" }}
-	<meta property="og:image" content="{{.Permalink}}" />
-	<meta property="og:image:width" content="{{.Width}}" />
-	<meta property="og:image:height" content="{{.Height}}" />
-{{ end }}
 
-{{- with .Params.audio }}<meta property="og:audio" content="{{.}}" />{{ end }}
-{{- with .Params.locale }}<meta property="og:locale" content="{{.}}" />{{ end }}
-{{- with site.Title }}<meta property="og:site_name" content="{{.}}" />{{ end }}
-{{- with .Params.videos }}
-	{{- range . }}<meta property="og:video" content="{{.|absURL}}" />{{ end }}
+{{ $url := "" }}
+{{ if .IsHome }}
+    <meta property="og:type" content="website" />
+    {{ with resources.GetMatch "images/logo.*" }}
+        {{ $url = .Permalink }}
+    {{ end }}
 {{ end }}
+{{ with $url }}<meta property="og:image" content="{{.}}" />{{ end }}

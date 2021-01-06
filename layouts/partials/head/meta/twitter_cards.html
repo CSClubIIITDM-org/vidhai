@@ -1,5 +1,16 @@
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:image" content="{{(resources.GetMatch `images/logo.*`).Permalink}}"/>
-<meta name="twitter:title" content="{{site.Title}}"/>
-<meta name="twitter:description" content="{{site.Params.description}}"/>
-{{ with site.Social.twitter -}}<meta name="twitter:site" content="@{{ . }}"/>{{ end -}}
+<meta name="twitter:card" content="summary" />
+{{ with site.Social.twitter }}
+    {{ $username := replace (urls.Parse .).Path "/" "" }}
+    {{ with $username }}<meta name="twitter:site" content="@{{.}}" />{{ end }}
+{{ end }}
+
+<meta name="twitter:title" content="{{site.Title}}" />
+<meta name="twitter:description" content="{{site.Params.description}}" />
+
+{{ $url := "" }}
+{{ if .IsHome }}
+    {{ with resources.GetMatch "images/logo.*" }}
+        {{ $url = .Permalink }}
+    {{ end }}
+{{ end }}
+{{ with $url }}<meta property="twitter:image" content="{{.}}" />{{ end }}

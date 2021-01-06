@@ -1,35 +1,30 @@
-{{ $scr := .Scratch }}
 {{ $mustOptimize := eq hugo.Environment "production" }}
 
-{{/*  TODO: Need a custom variables SCSS for Bootstrap?  */}}
-{{ $settingsSCSS := resources.Get "scss/_settings.scss" | resources.ExecuteAsTemplate "scss/_settings.scss" . }}
+{{ $variablesSCSS := resources.Get "scss/_variables.scss" | resources.ExecuteAsTemplate "scss/_variables.scss" . }}
 {{ $siteSCSS := resources.Get "scss/site.scss" }}
-{{ $cssOptions := dict "includePaths" (slice "node_modules/bootstrap/scss") }}
+{{ $cssOptions := dict "includePaths" (slice "assets/scss" "node_modules/bootstrap/scss") }}
 {{ if $mustOptimize }}
-	{{ $cssOptions = $cssOptions | merge (dict "outputStyle" "compressed") }}
+	{{ $cssOptions = dict "outputStyle" "compressed" | merge $cssOptions }}
 {{ end }}
-{{ $siteCSS := slice $settingsSCSS $siteSCSS | resources.Concat "css/site.scss" | toCSS $cssOptions }}
+{{ $siteCSS := slice $variablesSCSS $siteSCSS | resources.Concat "scss/site.scss" | toCSS $cssOptions }}
 
-{{ $cookieconsent := readFile "/node_modules/cookieconsent/build/cookieconsent.min.css" | resources.FromString "css/cookieconsent.min.css" }}
-{{ $assets := slice $siteCSS | append $cookieconsent }}
 {{ if $mustOptimize }}
-	{{ $bundle := $assets | resources.Concat "css/site.css" | postCSS | minify | fingerprint | resources.PostProcess }}
-	{{ with $bundle }}
+	{{ with ($siteCSS | postCSS | minify | fingerprint | resources.PostProcess) }}
 		<link rel="stylesheet" href="{{.RelPermalink}}" integrity="{{.Data.Integrity}}" crossorigin="anonymous">
 	{{ end }}
 {{ else }}
-	{{ range $assets }}
-		{{ $asset := . }}
-		{{ if eq . $siteCSS }}
-			{{ $asset = $asset | postCSS | resources.PostProcess }}
-		{{ end }}
-		<link rel="stylesheet" href="{{$asset.RelPermalink}}">
+	{{ with $siteCSS }}
+		<link rel="stylesheet" href="{{.RelPermalink}}">
 	{{ end }}
 {{ end }}
 
 {{/* Google Fonts */}}
-{{ with ($scr.Get "fonts").googleFonts }}
-	{{ $url := printf "https://fonts.googleapis.com/css?family=%s&display=swap" . | replaceRE "\\|" "%7C" | safeHTMLAttr }}
+{{ $fonts := slice }}
+{{ range $k, $font := site.Params.fonts }}
+	{{ $fonts = $fonts | append $font }}
+{{ end }}
+{{ with $fonts }}
+	{{ $url := printf "https://fonts.googleapis.com/css?family=%s&display=swap" (delimit . "|") | replaceRE "\\|" "%7C" | safeHTMLAttr }}
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link rel="preload" as="style" href="{{$url}}" crossorigin="anonymous" />
 	<link rel="stylesheet" href="{{$url}}" media="print" onload="this.media='all'" crossorigin="anonymous" />

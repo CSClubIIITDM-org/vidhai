@@ -1,0 +1,29 @@
+<div class="volunteer col">
+    {{ partial "svg" "fas fa-circle" }}
+    <img src="{{(resources.GetMatch `images/logo.*`).RelPermalink}}" alt="{{site.Title}}" class="logo">
+    <h1>{{ .Params.name }}</h1>
+    <h2>{{ .Params.role }}</h2>
+    {{ with .Resources.GetMatch "avatar.*" }}
+        {{ $img := .Fill "300x300 q70 r90" }}
+        <img src="{{$img.RelPermalink}}" alt="{{.Params.name}}" class="avatar">
+    {{ end }}
+    {{ with .Params.instagram }}
+        {{ $username := . }}
+        {{ with index (where site.Data.social "id" "instagram") 0 }}
+            <a href="{{printf .link $username}}" target="_blank" rel="noopener">
+                {{ partial "svg" .icon }}
+                {{ $username }}
+            </a>
+        {{ end }}
+    {{ end }}
+
+    <div class="reason">
+        <h2>Reason for joining Vidhai</h2>
+        {{ .Content }}
+    </div>
+    {{ partial "svg" "stripe" }}
+    {{ partial "svg" "sapling" }}
+    <div class="text-center footer">
+        An initiative by the students of IIITDM Kancheepuram.
+    </div>
+</div>

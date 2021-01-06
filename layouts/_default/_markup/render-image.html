@@ -1,7 +1,0 @@
-{{/* TODO: Check if file or URL is passed! */}}
-{{ $id := now.UnixNano }}
-<img src="{{.Destination|safeURL}}" alt="{{.Text}}" {{with .Title}} title="{{.}}" {{ end }} data-toggle="{{$id}}" />
-<div class="image reveal large" id="{{$id}}" data-reveal data-close-on-click="true">
-    <img src="{{.Destination|safeURL}}" alt="{{.Text}}">
-    {{ with .Text }}<p class="text-center">{{ . | markdownify | emojify }}</p>{{ end }}
-</div>

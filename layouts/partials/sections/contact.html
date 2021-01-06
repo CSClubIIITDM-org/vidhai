@@ -1,10 +1,10 @@
-{{ $title := .title | default "Contact Us" }}
-<section id="{{$title|anchorize}}">
+{{ $title := "Contact Us" }}
+<section id="{{$title|anchorize}}" class="contact">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
                 <h2 class="text section-title text-uppercase">{{ $title }}</h2>
-                {{ with .subtitle }}<p>{{ . }}</p>{{ end }}
+                <p>Feel free to contact us with questions, queries, or just to say "Hi".</p>
             </div>
         </div>
 

@@ -1,7 +1,8 @@
 const uncss = require('postcss-uncss')({
 	html: ['public/**/*.html'],
 	ignore: [
-		/\.cc-*/
+		/.*\.active*/,
+		/.*\.carousel*/,
 	]
 })
 

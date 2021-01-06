@@ -1,11 +1,4 @@
-{{ $scr := .Scratch }}
-
 {{ partial "head/meta/main" . }}
-{{ partial "jsonld" }}
 <link rel="canonical" hreflang="en" href="{{.Permalink}}">
-<link rel="manifest" href="{{`index.webmanifest`|relURL}}">
 <link rel="icon" type="image/png" href="{{(partial `functions/get_icon` 32).RelPermalink}}">
 <link rel="apple-touch-icon" type="image/png" href="{{(partial `functions/get_icon` 192).RelPermalink}}">
-
-{{ partial "assets/js/head" . }}
-{{ partial "assets/css" . }}

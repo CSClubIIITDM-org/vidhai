@@ -1,0 +1,7 @@
+{{ with site.GetPage "activities" }}
+    {{ $page := . }}
+    <section id="activities" class="activities">
+        {{ .Content }}
+        {{ partial "carousel" (dict "id" "gallery" "ctx" .) }}
+    </section>
+{{ end }}

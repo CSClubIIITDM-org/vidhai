@@ -1,0 +1,11 @@
+{{ with site.GetPage "story" }}
+    <section id="story" class="story">
+        {{ .Content }}
+        <div class="volunteers">
+            <h2>Our active volunteers</h2>
+            {{ range (where site.RegularPages "Section" "volunteer").ByWeight }}
+                {{ partial "volunteer" . }}
+            {{ end }}
+        </div>
+    </section>
+{{ end }}

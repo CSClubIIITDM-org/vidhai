@@ -1,16 +1,22 @@
-{{ define "main" }}
-
-{{/* Load page sections. */}}
-{{ range $i, $section := where .Params.sections ".active" "!=" false }}
-	{{ $sectionPath := printf "sections/%s.html" $section.name }}
-	{{ if gt $i 0 }}<hr>{{ end }}
-		<section class="{{anchorize ($section.title|default $section.name)}}-section">
-			{{ if eq $section.name "content" }}
-				{{ $.Content }}
-			{{ else }}
-				{{ $ctx := dict "section" $section "root" $ }}
-				{{ partial $sectionPath $ctx }}
+<!doctype html>
+<html lang="en">
+	<head>
+		{{ partial "head/main" . }}
+		{{ template "_internal/google_analytics_async.html" . }}
+		{{ partial "assets/css" . }}
+		<title>{{ site.Title }}</title>
+	</head>
+	<body data-spy="scroll" data-target="#navbar" data-offset="150">
+		{{ partial "navbar" . }}
+		<div class="container">
+			{{/* Load page sections */}}
+			{{ range $i, $section := site.Params.sections }}
+				{{ $sectionPath := printf "sections/%s.html" (anchorize $section) }}
+				{{ if gt $i 0 }}<hr>{{ end }}
+				{{ partial $sectionPath }}
 			{{ end }}
-		</section>
-	{{ end }}
-{{ end }}
+		</div>
+		{{ partial "footer" . }}
+		{{ partial "assets/js" . }}
+	</body>
+</html>
