@@ -4,8 +4,8 @@
         <div class="row align-items-center justify-content-center">
             {{ range .Params.data }}
                 <div class="col-md-6 mb-4 col-lg-3">
-                    <p class="number">{{ .value }}</p>
-                    <p class="caption text-black">{{ .title }}</p>
+                    <p class="number counter">{{ .value }}</p>
+                    <b><p class="caption text-black" style="text-align: center;">{{ .title }}</p></b>
                 </div>
             {{ end }}
         </div>

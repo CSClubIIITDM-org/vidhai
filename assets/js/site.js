@@ -19,3 +19,15 @@ $("#navbar ul li a[href^='#']").on('click', function (e) {
     }, 300, () => window.location.hash = hash
     );
 });
+
+$('.counter').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});

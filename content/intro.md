@@ -9,7 +9,7 @@ data:
     value: 6
   - title: Number of students benefited
     value: 93
-  - title: Donation amount received
+  - title: Donation amount received (₹) 
     value: 4890
 ---
 

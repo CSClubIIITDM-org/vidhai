@@ -1,0 +1,17 @@
+{{ with site.GetPage "explained" }}
+<section id="explained" class="explained">
+    <div class="container bg-image pt-5 pb-5" style="background-image: url({{(resources.GetMatch `images/banner/banner2.*`).RelPermalink}});" >
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="iframe-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/CXzxxvn5YEw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-sm-6 pt-5" style="color: aliceblue;">
+                {{ .Content }}
+                <a href="https://youtube.com/channel/UC26ngasXvtR1MNdb2rTc6qA" target = "_blank"><button type="button" class="btn btn-outline-light btn-lg"><i class="fa fa-youtube" aria-hidden="true"></i> Visit our Youtube channel</button></a>
+            </div>
+        </div>    
+    </div>    
+</section>
+{{ end }}

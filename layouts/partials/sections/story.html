@@ -1,8 +1,12 @@
 {{ with site.GetPage "story" }}
+<img src="{{(resources.GetMatch `images/banner/banner_1.*`).RelPermalink}}" alt="{{site.Title}}" class="responsive-img">
     <section id="story" class="story">
         {{ .Content }}
         <div class="volunteers">
-            <h2>Our active volunteers</h2>
+            <h2 class="text-center" >Our active volunteers</h2>
+            <p class="text-black" style="font-size: 20px; font-style:italic; text-align: center;">"Volunteers are not paid- not because they are worthless, but they are priceless..."</p>
+			<p class="text-black mb-5" style="font-size: 20px; text-align: center;">The heart of the Vidhai is at the volunteers who has supported this venture for the better tomorrow. Here are some of their reasons for joining Vidhai and also support them on Instagram!</p>
+				
             {{ range (where site.RegularPages "Section" "volunteer").ByWeight }}
                 {{ partial "volunteer" . }}
             {{ end }}

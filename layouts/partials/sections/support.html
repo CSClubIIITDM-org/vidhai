@@ -1,5 +1,8 @@
 {{ with site.GetPage "support" }}
-    <section class="donate" id="support">
+    <section class="donate text-center" id="support">
+        <h2>{{ .Params.quote }}</h2>
         {{ .Content }}
+        <p class="text-black" style="font-size: 20px"><strong>UPI: {{ .Params.upi }}</strong></p>
+		<a href="https://www.ketto.org/fundraiser/help-vidhai-educate-the-underprivileged-children?utm_medium=copy&utm_content=3ede3352d934b9dca7e095a47ddf84a6&shby=1&utm_source=internal&utm_campaign=help-vidhai-educate-the-underprivileged-children" target = "_blank"><button type="button" class="btn btn-outline-dark btn-lg mt-5"></i> Support Us through Ketto</button></a>
     </section>
 {{ end }}

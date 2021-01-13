@@ -1,7 +1,19 @@
 {{ with site.GetPage "join-us" }}
     {{ $title := .Title | default "Join Us" }}
-    <section id="{{$title|anchorize}}">
+    <section id="{{$title|anchorize}}" class="text-center">
         <h1>{{ .Title }}</h1>
         {{ .Content }}
+        <div class="row">
+            <div class="col-md-6 mt-5 text-center"> 
+                <a href="{{ .Params.form.iiitdm }}">
+                    <button type="button" class="btn btn-outline-success btn-lg">Click to Join (IIITDM students)</button>
+                </a>
+            </div>
+            <div class="col-md-6 mt-5 text-center">
+                <a href="{{ .Params.form.outside }}">
+                    <button type="button" class="btn btn-outline-secondary btn-lg">Click to Join (outside IIITDM)</button>
+                </a>
+            </div>
+        </div>
     </section>
 {{ end }}

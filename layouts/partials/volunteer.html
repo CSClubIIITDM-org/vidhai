@@ -1,4 +1,4 @@
-<div class="volunteer col">
+<div class="volunteer col mb-5">
     {{ partial "svg" "fas fa-circle" }}
     <img src="{{(resources.GetMatch `images/logo.*`).RelPermalink}}" alt="{{site.Title}}" class="logo">
     <h1>{{ .Params.name }}</h1>
@@ -23,7 +23,7 @@
     </div>
     {{ partial "svg" "stripe" }}
     {{ partial "svg" "sapling" }}
-    <div class="text-center footer">
+    <div class="text-center footer" style="color: white;">
         An initiative by the students of IIITDM Kancheepuram.
     </div>
 </div>

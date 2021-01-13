@@ -3,6 +3,8 @@ title: Structure
 ---
 
 # Structure of Vidhai
+
+
 In-order to produce an efficient work culture, the volunteers of Vidhai were split into 6 teams.
 
 1. Teaching Team: It includes volunteers who are passionate towards teaching, visit the school on Saturdays to teach the students using activity based teaching methods.

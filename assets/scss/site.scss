@@ -57,11 +57,29 @@ svg {
 
 $scale: 1em;
 $background: #e6f8e0;
+
+
+.number {
+	font-family: 'Prompt', sans-serif;
+	font-size: 50px;
+	color: #00e600;
+	text-align: center;
+}
+
+.responsive-img {
+	width: 100%;	
+	height: auto;
+	margin-bottom: 50px;
+	margin-top: 50px;
+  }
+
+
 .volunteer {
 	position: relative;
 	overflow: hidden;
 	margin: auto;
 	background-color: $background;
+	margin-bottom: 10px;
 
 	width: 70rem;
 	.logo {
@@ -112,3 +130,23 @@ $background: #e6f8e0;
 .footer {
 	background-color: #995320;
 }
+
+.iframe-container{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+  }
+  .iframe-container iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .support {
+	  
+	color: rgb(255, 238, 0);
+	  
+  }

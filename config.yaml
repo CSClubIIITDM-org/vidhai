@@ -10,14 +10,16 @@ params:
     - intro
     - story
     - programmes
+    - explained 
     - structure
     - activities
     - join us
     - support
     - contact
 
+
   fonts:
-    heading: Anton
+    heading: Prompt
     body: Nunito
 
 social:
